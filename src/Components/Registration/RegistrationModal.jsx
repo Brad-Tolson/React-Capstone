@@ -54,10 +54,10 @@ const RegistrationModal = ({ showModal, closeModal }) => {
     try {
         const user = await createUser(firstName, lastName, email, password);
         if (user) {
-          // Log in the user
+          
           const response = await loginUser(email, password);
           if (response.success) {
-            // Redirect to home page
+            
             closeModal();
             history.push("/");
           } else {

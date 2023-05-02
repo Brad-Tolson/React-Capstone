@@ -4,18 +4,18 @@ import { login } from "../Utils/db";
 import dotenv from "dotenv";
 dotenv.config();
 
-const LoginModal = ({ showModal, closeModal, setUser }) => { // Added setUser to pass the logged-in user to the parent component
+const LoginModal = ({ showModal, closeModal, setUser }) => { 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null); // Added error state to handle login errors
+  const [error, setError] = useState(null); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = await login(username, password);
     if (user) {
-      setUser(user); // Set the logged-in user in the parent component
+      setUser(user); 
     } else {
-      setError("Invalid username or password"); // Set the error message if login fails
+      setError("Invalid username or password"); 
     }
     closeModal();
   };
@@ -27,7 +27,7 @@ const LoginModal = ({ showModal, closeModal, setUser }) => { // Added setUser to
           <span className="close" onClick={closeModal}>
             &times;
           </span>
-          {error && <p className="error">{error}</p>} // Show the error message if there is one
+          {error && <p className="error">{error}</p>} 
           <form onSubmit={handleSubmit}>
             <label>
               Username:

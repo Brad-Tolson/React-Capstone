@@ -3,12 +3,12 @@ import "./Header.css";
 import catDogImage from '../../Assets/catdogheader.png';
 
 import LoginModal from "../Login/LoginModal";
-import RegistrationModal from "../Registration/RegistrationModal"; // step 1
+import RegistrationModal from "../Registration/RegistrationModal"; 
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false); // step 2
+  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false); 
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -26,7 +26,7 @@ const Header = () => {
     setIsLoginModalOpen(false);
   };
 
-  const openRegistrationModal = () => { // step 3
+  const openRegistrationModal = () => { 
     setIsRegistrationModalOpen(true);
   };
 
@@ -51,7 +51,7 @@ const Header = () => {
             {!isLoggedIn && (
               <>
                 <li>
-                  <a href="#" onClick={openRegistrationModal}>Register</a> {/* step 4 */}
+                  <a href="#" onClick={openRegistrationModal}>Register</a> 
                 </li>
                 <li>
                   <a href="#" onClick={openLoginModal}>
@@ -78,7 +78,7 @@ const Header = () => {
       {isLoginModalOpen && (
         <LoginModal showModal={true} closeModal={closeLoginModal} handleLogin={handleLogin} />
       )}
-      {isRegistrationModalOpen && ( // step 5
+      {isRegistrationModalOpen && ( 
         <RegistrationModal showModal={true} closeModal={closeRegistrationModal} />
       )}
     </div>
