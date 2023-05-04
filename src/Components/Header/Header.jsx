@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "./Header.css";
 import catDogImage from '../../Assets/catdogheader.png';
-
-import LoginModal from "../Login/LoginModal";
-import RegistrationModal from "../Registration/RegistrationModal"; 
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -43,10 +41,10 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <a href="#">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="#">Search</a>
+              <Link to="/pets">Search</Link>
             </li>
             {!isLoggedIn && (
               <>
@@ -75,12 +73,14 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-      {isLoginModalOpen && (
-        <LoginModal showModal={true} closeModal={closeLoginModal} handleLogin={handleLogin} />
-      )}
-      {isRegistrationModalOpen && ( 
+      {/* LoginModal component */}
+      {/* {isLoginModalOpen && (
+         <LoginModal showModal={true} closeModal={closeLoginModal} handleLogin={handleLogin} />
+      )} */}
+      {/* RegistrationModal component */}
+      {/* {isRegistrationModalOpen && ( 
         <RegistrationModal showModal={true} closeModal={closeRegistrationModal} />
-      )}
+      )} */}
     </div>
   );
 };
