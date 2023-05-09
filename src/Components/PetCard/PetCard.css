@@ -22,4 +22,18 @@
     margin-bottom: 5px;
     line-height: 1.4;
   }
+  .pet-card button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: #1c7ed6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .pet-card button:hover {
+    background-color: #115c9c;
+  }
   

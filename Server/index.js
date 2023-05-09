@@ -2,20 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRoutes = require('./Controllers/auth');
-const config = require('./config');
-const { sequelize } = require('./models');
-
+const { Sequelize } = require('sequelize');
+require('dotenv').config();
 const app = express();
 
+const sequelize=require("./database")
 
-sequelize.authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
-
+sequelize.sync()
 
 app.use(bodyParser.json());
 

@@ -1,35 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.css";
-import catDogImage from '../../Assets/catdogheader.png';
-import { Link } from 'react-router-dom';
+import catDogImage from "../../Assets/catdogheader.png";
+import { Link } from "react-router-dom";
 
-const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false); 
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
+const Header = ({ user, setUser }) => {
   const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
-
-  const openLoginModal = () => {
-    setIsLoginModalOpen(true);
-  };
-
-  const closeLoginModal = () => {
-    setIsLoginModalOpen(false);
-  };
-
-  const openRegistrationModal = () => { 
-    setIsRegistrationModalOpen(true);
-  };
-
-  const closeRegistrationModal = () => {
-    setIsRegistrationModalOpen(false);
+    setUser(null);
   };
 
   return (
@@ -46,22 +22,20 @@ const Header = () => {
             <li>
               <Link to="/pets">Search</Link>
             </li>
-            {!isLoggedIn && (
+            {!user && (
               <>
                 <li>
-                  <a href="#" onClick={openRegistrationModal}>Register</a> 
+                  <Link to="/register">Register</Link>
                 </li>
                 <li>
-                  <a href="#" onClick={openLoginModal}>
-                    Login
-                  </a>
+                  <Link to="/login">Login</Link>
                 </li>
               </>
             )}
-            {isLoggedIn && (
+            {user && (
               <>
                 <li>
-                  <a href="#">Profile</a>
+                  <Link to="/profile">Profile</Link>
                 </li>
                 <li>
                   <a href="#" onClick={handleLogout}>
@@ -73,14 +47,6 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-      {/* LoginModal component */}
-      {/* {isLoginModalOpen && (
-         <LoginModal showModal={true} closeModal={closeLoginModal} handleLogin={handleLogin} />
-      )} */}
-      {/* RegistrationModal component */}
-      {/* {isRegistrationModalOpen && ( 
-        <RegistrationModal showModal={true} closeModal={closeRegistrationModal} />
-      )} */}
     </div>
   );
 };
