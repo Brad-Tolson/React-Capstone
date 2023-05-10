@@ -1,59 +1,70 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../Contexts/AuthContext";
 import "../Registration/RegistrationForm.css";
+import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  const { login } = useAuth();
 
-  const handleLogin = async () => {
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       const response = await axios.post("/api/auth/login", {
         email,
         password,
       });
       const { token } = response.data;
-      localStorage.setItem("token", token); 
-      console.log(`Token saved to local storage: ${token}`);
-      login(token); 
-      console.log(`Logged in with token: ${token}`);
-      setMessage("Login successful");
-      navigate("/"); 
+      // Store the token in localStorage
+      localStorage.setItem("token", token);
+      // Update the user state or perform any other necessary actions
+      setUser({ loggedIn: true });
+      navigate("/");
     } catch (error) {
       console.error(error);
-      setMessage("Login failed");
     }
   };
   
 
   return (
     <div className="registration-form-container">
-      <form className="registration-form" onSubmit={handleLogin}>
+      <form className="registration-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
+
         <div className="form-group">
-          <label>Email:</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
+            id="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
           />
         </div>
+
         <div className="form-group">
-          <label>Password:</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
+            id="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
           />
         </div>
-        <button type="submit">Login</button>
-        {message && <p>{message}</p>}
+
+        <div className="form-group">
+          <button type="submit">Login</button>
+        </div>
       </form>
+
     </div>
   );
 };

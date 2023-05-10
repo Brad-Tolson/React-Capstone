@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const Header = ({ user, setUser }) => {
   const handleLogout = () => {
+    console.log("Logging out...");
     setUser(null);
   };
 
@@ -20,7 +21,7 @@ const Header = ({ user, setUser }) => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/pets">Search</Link>
+              <Link to="/pets">Pets</Link>
             </li>
             {!user && (
               <>
