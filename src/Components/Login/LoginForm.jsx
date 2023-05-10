@@ -23,16 +23,19 @@ const LoginForm = ({ setUser }) => {
         email,
         password,
       });
-      const { token } = response.data;
-      // Store the token in localStorage
+      const { token, userId } = response.data; 
+      
       localStorage.setItem("token", token);
-      // Update the user state or perform any other necessary actions
-      setUser({ loggedIn: true });
+      localStorage.setItem("userId", userId);
+      
+      setUser({ loggedIn: true, userId }); 
       navigate("/");
     } catch (error) {
       console.error(error);
     }
   };
+  
+  
   
 
   return (

@@ -1,40 +1,42 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
-function ProfilePage() {
-  const [user, setUser] = useState(null);
-  const { userId } = useParams();
+const ProfilePage = ({ user }) => {
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchUserData = async () => {
       try {
+        console.log("Fetching user data...");
+        const userId = user?.userId || localStorage.getItem("userId");
+        if (!userId) {
+          console.log("User ID not found");
+          return;
+        }
         const response = await axios.get(`/api/user/${userId}`);
-        setUser(response.data);
+        const userData = response.data;
+        console.log("User:", userData);
+        setUserData(userData);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching user data:", error);
       }
     };
-    fetchUser();
-  }, [userId]);
 
-  if (!user) {
-    return <div>Loading...</div>;
-  }
+    fetchUserData();
+  }, [user]);
 
   return (
     <div>
-      <h1>Profile</h1>
-      <p>First Name: {user.firstName}</p>
-      <p>Last Name: {user.lastName}</p>
-      <p>Email: {user.email}</p>
-      <p>Phone Number: {user.phoneNumber}</p>
-      <p>Address: {user.address}</p>
-      <p>Number of Children: {user.numChildren}</p>
-      <p>Home Type: {user.homeType}</p>
-      <p>Current Pets: {user.currentPets}</p>
+      {userData ? (
+        <div>
+          <h2>{userData.firstName}'s Profile</h2>
+          {/* Render the user data */}
+        </div>
+      ) : (
+        <p>Loading user data...</p>
+      )}
     </div>
   );
-}
+};
 
 export default ProfilePage;

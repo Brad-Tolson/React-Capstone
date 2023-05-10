@@ -13,11 +13,10 @@ const App = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    
     const token = localStorage.getItem("token");
     if (token) {
-      
       setUser({ loggedIn: true });
+
     }
   }, []);
 
@@ -29,11 +28,8 @@ const App = () => {
           <Route path="/" element={<Homescreen />} />
           <Route path="/pets" element={<PetsPage />} />
           <Route path="/register" element={<RegistrationForm />} />
-          <Route
-            path="/login"
-            element={<LoginForm setUser={setUser} />}
-          />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/login" element={<LoginForm setUser={setUser} />} />
+          <Route path="/profile" element={<ProfilePage user={user} />} />
         </Routes>
         <Footer />
       </div>
