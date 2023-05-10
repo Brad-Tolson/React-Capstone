@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import "./PetCard.css";
+import { Link } from "react-router-dom";
 
 const PetCard = ({ pet }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const favoritePet = () => {
+  const handleFavorite = () => {
     setIsFavorite(!isFavorite);
-  };
-
-  const adoptPet = () => {
-    alert(`You have adopted ${pet.name}!`);
   };
 
   return (
@@ -24,10 +21,12 @@ const PetCard = ({ pet }) => {
         <p>Location: {pet.location}</p>
         <p>Description: {pet.description}</p>
         <div className="pet-card-buttons">
-          <button onClick={favoritePet}>
+          <button onClick={handleFavorite}>
             {isFavorite ? "Unfavorite" : "Favorite"}
           </button>
-          <button onClick={adoptPet}>Adopt</button>
+          <Link to={`/adoption-form/${pet.petId}`}>
+            <button>Adopt</button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,11 +1,11 @@
-.adoption-form-container {
+.profile-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
   }
   
-  .adoption-form {
+  .profile-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,7 +17,7 @@
     background-color: #fff;
   }
   
-  .adoption-form h1 {
+  .profile-form h1 {
     text-align: center;
     margin-bottom: 20px;
   }
