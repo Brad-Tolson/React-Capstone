@@ -18,7 +18,7 @@ function PetsPage() {
 
   const handleSearch = (searchTerms) => {
     if (Object.values(searchTerms).every((val) => val === "")) {
-      // If all search fields are blank, reload all pets
+      
       setLoading(true);
       setSearchResults([]);
       const fetchData = async () => {
@@ -28,7 +28,7 @@ function PetsPage() {
       };
       fetchData();
     } else {
-      // Otherwise, filter the pets based on search terms
+      
       const filteredPets = searchResults.filter((pet) => {
         return Object.keys(searchTerms).every((option) => {
           const searchTerm = searchTerms[option].toLowerCase();

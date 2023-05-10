@@ -18,12 +18,12 @@ const LoginForm = () => {
         password,
       });
       const { token } = response.data;
-      localStorage.setItem("token", token); // save token to local storage
+      localStorage.setItem("token", token); 
       console.log(`Token saved to local storage: ${token}`);
-      login(token); // set the current user in the context
+      login(token); 
       console.log(`Logged in with token: ${token}`);
       setMessage("Login successful");
-      navigate("/"); // redirect to home screen
+      navigate("/"); 
     } catch (error) {
       console.error(error);
       setMessage("Login failed");
