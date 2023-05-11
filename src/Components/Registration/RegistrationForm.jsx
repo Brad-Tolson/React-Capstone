@@ -54,11 +54,13 @@ const RegistrationForm = () => {
     }
   };
 
+  
+
   return (
     <div className="registration-form-container">
       <form className="registration-form" onSubmit={handleFormSubmit}>
         <h2>Register</h2>
-        {errorMessage && <div className="error-message">{errorMessage}</div>}
+        
         <div className="form-group">
           <label htmlFor="firstName">First Name:</label>
           <input
@@ -179,6 +181,7 @@ const RegistrationForm = () => {
           />
         </div>
         <button type="submit">Submit</button>
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
       </form>
     </div>
   );
